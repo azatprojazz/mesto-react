@@ -12,7 +12,7 @@ function PopupWithForm({ title, name, children, submitBtnText, isOpen, onClose }
         <form className="popup__form" name={name} noValidate>
           {children}
           <button className="popup__save-btn opacity-on-hover" type="submit">
-            {submitBtnText}
+            {submitBtnText || 'Сохранить'}
           </button>
         </form>
       </div>

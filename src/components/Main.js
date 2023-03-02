@@ -1,33 +1,23 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '../utils/api.js';
 import avatar from '../images/avatar.jpg';
 import Card from './Card.js';
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
-  const [cards, setCards] = React.useState([]);
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+  const [cards, setCards] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then((res) => {
-        setUserName(res[0].name);
-        setUserDescription(res[0].about);
-        setUserAvatar(res[0].avatar);
+      .then(([userData, cardsData]) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
         setCards([
           ...cards,
-          ...res[1].map((card) => {
-            return (
-              <Card
-                key={card._id}
-                name={card.name}
-                link={card.link}
-                likes={card.likes}
-                onCardClick={onCardClick}
-              />
-            );
-          }),
+          ...cardsData
         ]);
       })
       .catch((err) => {
@@ -60,7 +50,17 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       </section>
 
       <section className="cards" aria-label="Список карточек">
-        <ul className="cards__container">{cards}</ul>
+        <ul className="cards__container">{cards.map((card) => {
+            return (
+              <Card
+                key={card._id}
+                name={card.name}
+                link={card.link}
+                likes={card.likes}
+                onCardClick={onCardClick}
+              />
+            );
+          })}</ul>
       </section>
     </main>
   );
