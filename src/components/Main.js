@@ -15,10 +15,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
-        setCards([
-          ...cards,
-          ...cardsData
-        ]);
+        setCards([...cards, ...cardsData]);
       })
       .catch((err) => {
         console.log(err);
@@ -50,7 +47,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       </section>
 
       <section className="cards" aria-label="Список карточек">
-        <ul className="cards__container">{cards.map((card) => {
+        <ul className="cards__container">
+          {cards.map((card) => {
             return (
               <Card
                 key={card._id}
@@ -60,7 +58,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                 onCardClick={onCardClick}
               />
             );
-          })}</ul>
+          })}
+        </ul>
       </section>
     </main>
   );

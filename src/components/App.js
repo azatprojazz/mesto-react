@@ -24,14 +24,14 @@ function App() {
   }
 
   function handleCardClick(name, link) {
-    setSelectedCard({isOpen: true, name, link });
+    setSelectedCard({ isOpen: true, name, link });
   }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({...selectedCard, isOpen: false});
+    setSelectedCard({ ...selectedCard, isOpen: false });
   }
 
   return (
