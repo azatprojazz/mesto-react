@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/mesto-react/static/css/main.269e050b.css",
+    "main.js": "/mesto-react/static/js/main.afdb7275.js",
+    "static/js/787.5530211c.chunk.js": "/mesto-react/static/js/787.5530211c.chunk.js",
+    "static/media/Inter-500.woff": "/mesto-react/static/media/Inter-500.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-900.woff": "/mesto-react/static/media/Inter-900.c6938660eec019fefd68.woff",
+    "static/media/Inter-400.woff": "/mesto-react/static/media/Inter-400.8c206db99195777c6769.woff",
+    "static/media/Inter-500.woff2": "/mesto-react/static/media/Inter-500.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter-900.woff2": "/mesto-react/static/media/Inter-900.15ca31c0a2a68f76d2d1.woff2",
+    "static/media/Inter-400.woff2": "/mesto-react/static/media/Inter-400.c8ba52b05a9ef10f4758.woff2",
+    "static/media/avatar.jpg": "/mesto-react/static/media/avatar.76485368d187d1919d1b.jpg",
+    "static/media/header-logo.svg": "/mesto-react/static/media/header-logo.03b78ada3425e9132ff3db7ea8f4a6f6.svg",
+    "static/media/card-like.svg": "/mesto-react/static/media/card-like.87ed371465c7a6a1cd01.svg",
+    "index.html": "/mesto-react/index.html",
+    "static/media/Trash.svg": "/mesto-react/static/media/Trash.823b0cf1b0b7e9cb7cad.svg",
+    "static/media/card-like-active.svg": "/mesto-react/static/media/card-like-active.e787eeb70bb65b7b453a.svg",
+    "static/media/edit-pencil.svg": "/mesto-react/static/media/edit-pencil.8667ac4a523e8fc42e59.svg",
+    "static/media/Close-icon.svg": "/mesto-react/static/media/Close-icon.2ceb783afbab75916ddc.svg",
+    "static/media/add-button.svg": "/mesto-react/static/media/add-button.d86bb2edc2f6eadb96b7.svg",
+    "main.269e050b.css.map": "/mesto-react/static/css/main.269e050b.css.map",
+    "main.afdb7275.js.map": "/mesto-react/static/js/main.afdb7275.js.map",
+    "787.5530211c.chunk.js.map": "/mesto-react/static/js/787.5530211c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.269e050b.css",
+    "static/js/main.afdb7275.js"
+  ]
+}
