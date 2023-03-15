@@ -1,6 +1,6 @@
-function PopupWithForm({ title, name, children, submitBtnText, isOpen, onClose }) {
+function PopupWithForm({ title, name, children, submitBtnText, isOpen, onClose, onSubmit, onOverlay }) {
   return (
-    <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}>
+    <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} onClick={onOverlay}>
       <div className="popup__container">
         <button
           className="popup__close-btn opacity-on-hover"
@@ -9,7 +9,7 @@ function PopupWithForm({ title, name, children, submitBtnText, isOpen, onClose }
           onClick={onClose}
         ></button>
         <h2 className="popup__title">{title}</h2>
-        <form className="popup__form" name={name} noValidate>
+        <form className="popup__form" name={name} onSubmit={onSubmit} noValidate>
           {children}
           <button className="popup__save-btn opacity-on-hover" type="submit">
             {submitBtnText || 'Сохранить'}
