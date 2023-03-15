@@ -1,42 +1,26 @@
-import { useEffect, useState } from 'react';
-import { api } from '../utils/api.js';
+import { useContext } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import avatar from '../images/avatar.jpg';
 import Card from './Card.js';
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = useState('');
-  const [userDescription, setUserDescription] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-        setCards([...cards, ...cardsData]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards }) {
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">
       <section className="profile" aria-label="Описание профиля">
         <button className="profile__edit-image" onClick={onEditAvatar}>
-          <img className="profile__avatar" src={userAvatar ? userAvatar : avatar} alt="Аватарка" />
+          <img className="profile__avatar" src={currentUser.avatar ? currentUser.avatar : avatar} alt="Аватарка" />
         </button>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             className="profile__edit-btn opacity-on-hover"
             type="button"
             aria-label="Редактировать профиль"
             onClick={onEditProfile}
           ></button>
-          <p className="profile__job">{userDescription}</p>
+          <p className="profile__job">{currentUser.about}</p>
         </div>
         <button
           className="profile__add-btn opacity-on-hover"
@@ -56,6 +40,9 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
                 link={card.link}
                 likes={card.likes}
                 onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
+                card={card}
               />
             );
           })}
