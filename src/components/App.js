@@ -82,7 +82,7 @@ function App() {
     api
       .deleteCard(card._id)
       .then(() => {
-        setCards(cards.filter((cards) => cards._id !== card._id));
+        setCards((prevCards) => prevCards.filter((cards) => cards._id !== card._id));
       })
       .catch((err) => {
         console.log(err);
