@@ -9,7 +9,7 @@ function PopupWithForm({ title, name, children, submitBtnText, isOpen, onClose, 
           onClick={onClose}
         ></button>
         <h2 className="popup__title">{title}</h2>
-        <form className="popup__form" name={name} onSubmit={onSubmit} noValidate>
+        <form className="popup__form" name={name} onSubmit={onSubmit}>
           {children}
           <button className="popup__save-btn opacity-on-hover" type="submit">
             {submitBtnText || 'Сохранить'}
