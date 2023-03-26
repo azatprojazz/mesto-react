@@ -102,7 +102,11 @@ function App() {
   }
 
   function handleCardClick(name, link) {
-    setSelectedCard({ isOpen: true, name, link });
+    setSelectedCard({
+      isOpen: true,
+      name,
+      link,
+    });
   }
 
   function closePopupsByOverlay(evt) {
@@ -115,7 +119,10 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard({ ...selectedCard, isOpen: false });
+    setSelectedCard({
+      ...selectedCard,
+      isOpen: false,
+    });
   }
 
   return (
