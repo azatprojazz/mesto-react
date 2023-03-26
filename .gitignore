@@ -15,6 +15,7 @@
 .DS_Store
 .prettierrc
 .prettierignore
+codiga.yml
 .env.local
 .env.development.local
 .env.test.local
