@@ -1,23 +1,32 @@
+// Импорт React и хуков
 import { useState, useEffect } from 'react';
+// Импорт утилит API
 import { api } from '../utils/api.js';
+// Импорт контекста
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
-import Header from './Header.js';
-import Main from './Main.js';
-import Footer from './Footer.js';
-import PopupWithForm from './PopupWithForm.js';
-import ImagePopup from './ImagePopup.js';
-import EditProfilePopup from './EditProfilePopup.js';
-import EditAvatarPopup from './EditAvatarPopup.js';
+// Импорт компонентов
 import AddPlacePopup from './AddPlacePopup.js';
+import EditAvatarPopup from './EditAvatarPopup.js';
+import EditProfilePopup from './EditProfilePopup.js';
+import Footer from './Footer.js';
+import Header from './Header.js';
+import ImagePopup from './ImagePopup.js';
+import Main from './Main.js';
+import PopupWithForm from './PopupWithForm.js';
 
 function App() {
+  // Состояния для попапов
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  // Состояние для выбранной карточки
   const [selectedCard, setSelectedCard] = useState({});
+  // Состояние для текущего пользователя
   const [currentUser, setCurrentUser] = useState({});
+  // Состояние для карточек
   const [cards, setCards] = useState([]);
 
+  // Получение данных пользователя и карточек при монтировании компонента
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([userData, cardsData]) => {
@@ -29,6 +38,7 @@ function App() {
       });
   }, []);
 
+  // Обработка обновления данных пользователя
   function handleUpdateUser({ name, about }) {
     api
       .editUserInfo({ name, about })
@@ -41,6 +51,7 @@ function App() {
       });
   }
 
+  // Обработка обновления аватара пользователя
   function handleUpdateAvatar({ avatar }) {
     api
       .setNewAvatar({ avatar })
@@ -53,6 +64,7 @@ function App() {
       });
   }
 
+  // Обработка лайка и дизлайка карточки
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
@@ -66,6 +78,7 @@ function App() {
       });
   }
 
+  // Обработка добавления новой карточки
   function handleAddPlaceSubmit({ name, link }) {
     api
       .addNewCard({ name, link })
@@ -78,6 +91,7 @@ function App() {
       });
   }
 
+  // Обработка удаления карточки
   function handleCardDelete(card) {
     api
       .deleteCard(card._id)
@@ -89,6 +103,7 @@ function App() {
       });
   }
 
+  // Обработчики открытия попапов
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
   }
@@ -101,6 +116,7 @@ function App() {
     setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
   }
 
+  // Обработчик открытия попапа с изображением карточки
   function handleCardClick(name, link) {
     setSelectedCard({
       isOpen: true,
@@ -109,12 +125,14 @@ function App() {
     });
   }
 
+  // Закрытие попапов по клику на оверлей
   function closePopupsByOverlay(evt) {
     if (evt.target === evt.currentTarget) {
       closeAllPopups();
     }
   }
 
+  // Закрытие всех попапов
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
