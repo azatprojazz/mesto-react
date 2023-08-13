@@ -1,4 +1,14 @@
-function PopupWithForm({ title, name, children, submitBtnText, isOpen, onClose, onSubmit, onOverlay }) {
+function PopupWithForm({
+  title,
+  name,
+  children,
+  submitBtnText,
+  isOpen,
+  onClose,
+  onSubmit,
+  onOverlay,
+}) {
+  // Компонент PopupWithForm возвращает JSX-разметку попапа с формой
   return (
     <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} onClick={onOverlay}>
       <div className="popup__container">
@@ -10,9 +20,9 @@ function PopupWithForm({ title, name, children, submitBtnText, isOpen, onClose, 
         ></button>
         <h2 className="popup__title">{title}</h2>
         <form className="popup__form" name={name} onSubmit={onSubmit}>
-          {children}
+          {children} {/* Вставка дочерних элементов (полей формы) */}
           <button className="popup__save-btn opacity-on-hover" type="submit">
-            {submitBtnText || 'Сохранить'}
+            {submitBtnText || 'Сохранить'} {/* Текст кнопки сохранения, по умолчанию "Сохранить" */}
           </button>
         </form>
       </div>

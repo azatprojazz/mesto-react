@@ -3,14 +3,27 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import avatar from '../images/avatar.jpg';
 import Card from './Card.js';
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards }) {
+function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards,
+}) {
+  // Получение текущего пользователя из контекста
   const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">
       <section className="profile" aria-label="Описание профиля">
         <button className="profile__edit-image" onClick={onEditAvatar}>
-          <img className="profile__avatar" src={currentUser.avatar ? currentUser.avatar : avatar} alt="Аватарка" />
+          <img
+            className="profile__avatar"
+            src={currentUser.avatar ? currentUser.avatar : avatar}
+            alt="Аватарка"
+          />
         </button>
         <div className="profile__info">
           <h1 className="profile__name">{currentUser.name}</h1>

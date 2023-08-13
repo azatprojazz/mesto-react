@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
+// Компонент для попапа добавления нового места
 function AddPlacePopup({ isOpen, onClose, onAddPlace, onOverlay }) {
+  // Состояние для хранения значений полей ввода
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
 
+  // Очистка полей ввода при открытии попапа
   useEffect(() => {
     setName('');
     setLink('');
   }, [isOpen]);
 
+  // Обработчики изменения полей ввода
   function handleChangeName(evt) {
     setName(evt.target.value);
   }
@@ -18,6 +22,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onOverlay }) {
     setLink(evt.target.value);
   }
 
+  // Обработчик отправки формы
   function handleSubmit(evt) {
     // Запрещаем браузеру переходить по адресу формы
     evt.preventDefault();
@@ -26,9 +31,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, onOverlay }) {
       name,
       link,
     });
+    // Очистка полей ввода после отправки формы
     setName('');
     setLink('');
   }
+
+  // Рендеринг попапа с формой добавления нового места
   return (
     <PopupWithForm
       title="Новое место"

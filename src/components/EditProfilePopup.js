@@ -6,27 +6,27 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, onOverlay }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
-  // Подписка на контекст
+  // Подписка на контекст текущего пользователя
   const currentUser = useContext(CurrentUserContext);
 
-  // После загрузки текущего пользователя из API
-  // его данные будут использованы в управляемых компонентах.
+  // Заполнение полей формы данными текущего пользователя при открытии попапа
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
   }, [currentUser, isOpen]);
 
+  // Обработчик отправки формы
   function handleSubmit(evt) {
-    // Запрещаем браузеру переходить по адресу формы
     evt.preventDefault();
 
-    // Передаём значения управляемых компонентов во внешний обработчик
+    // Передача значений полей формы во внешний обработчик
     onUpdateUser({
       name,
       about: description,
     });
   }
 
+  // Обработчики изменения значений полей формы
   function handleChangeName(evt) {
     setName(evt.target.value);
   }

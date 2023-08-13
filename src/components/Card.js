@@ -2,11 +2,14 @@ import { useContext } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function Card({ name, link, likes, onCardClick, onCardLike, onCardDelete, card }) {
+  // Получение текущего пользователя из контекста
   const currentUser = useContext(CurrentUserContext);
 
+  // Определение владельца карточки и наличия лайка текущего пользователя
   const isOwn = currentUser._id === card.owner._id;
   const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
+  // Обработчики клика по карточке, лайку и удалению карточки
   function handleClick() {
     onCardClick(name, link);
   }

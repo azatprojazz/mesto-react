@@ -2,21 +2,24 @@ import { useRef, useEffect } from 'react';
 import PopupWithForm from './PopupWithForm.js';
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, onOverlay }) {
-  // Подписка на контекст
+  // Создание ссылки на инпут аватара
   const avatarRef = useRef();
 
+  // Очистка значения инпута при открытии попапа
   useEffect(() => {
     avatarRef.current.value = '';
   }, [isOpen]);
 
+  // Обработчик отправки формы
   function handleSubmit(evt) {
     evt.preventDefault();
 
     onUpdateAvatar({
-      avatar: avatarRef.current.value /* Значение инпута, полученное с помощью рефа */,
+      avatar: avatarRef.current.value, // Значение инпута, полученное с помощью рефа
     });
     avatarRef.current.value = '';
   }
+
   return (
     <PopupWithForm
       title="Обновить аватар"
